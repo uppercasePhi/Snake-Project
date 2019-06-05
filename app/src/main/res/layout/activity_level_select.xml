@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:textSize="30sp"
+              android:textAlignment="center"
+              android:text="@string/level_select"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="20sp"
+              android:text="@string/levels"/>
+
+
+    <!--> временно, надо заменить на ListView<-->
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/start_button"
+            android:text="1"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:textSize="20sp"
+              android:text="@string/extra_levels"/>
+
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:text="@string/main_menu_button"
+            android:id="@+id/main_menu_button"
+
+            android:layout_marginTop="100dp"/>
+
+</LinearLayout>
