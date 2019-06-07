@@ -5,23 +5,23 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
+import android.util.AttributeSet
 import android.util.Log
-import android.view.SurfaceHolder
-import android.view.SurfaceView
 import android.view.View
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.lang.Exception
-import kotlin.math.min
 import kotlin.random.Random
-import kotlin.system.exitProcess
-import kotlin.system.measureTimeMillis
 
-class SnakeGame(context : Context, screenSizeInPixels : Point) : View(context) {
+class SnakeGame : View {
+    constructor(context: Context?) : super(context)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
+
     // поля и инициализация некоторых из них
 
     // enum с возможными направлениями змейки
-    private enum class Heading {UP, RIGHT, LEFT, DOWN}
+    private enum class Heading { UP, RIGHT, LEFT, DOWN }
 
     // нынешнее направление змейки
     private var curHeading = Heading.UP
@@ -31,44 +31,43 @@ class SnakeGame(context : Context, screenSizeInPixels : Point) : View(context) {
 
 
     // координаты еды
-    var food : Point = Point(0, 0)
+    var food: Point = Point(0, 0)
 
     // размер ячейки
-    var cellSize : Int
+    var cellSize: Int = -1
 
     private val screenSizeInCells = Point(20, 20) // TODO: сделать возможность менять х и y в зависимости от уровня
 
     // длина змейки (удобнее хранить её, чем использовать длину snakePoints)
-    private var snakeLength : Int = 0
+    private var snakeLength: Int = 0
     private val maxSnakeLength = 200
 
     // массив Point-ов с координатами змейки
     //var snakePoints = Array<Point>(maxSnakeLength){Point(0,0)}
-    var snakeXs : Array<Int> = Array<Int>(maxSnakeLength){0}
-    var snakeYs : Array<Int> = Array<Int>(maxSnakeLength){0}
+    var snakeXs: Array<Int> = Array<Int>(maxSnakeLength) { 0 }
+    var snakeYs: Array<Int> = Array<Int>(maxSnakeLength) { 0 }
 
     // количество очков игрока
-    private var score : Int = 0
+    private var score: Int = 0
 
     // на паузе ли игра?
-    private var isPaused : Boolean = true
+    private var isPaused: Boolean = true
 
     // параметры для регуляции обновления кадров
     private var fps = 1
-    private var timeUntilUpdate : Long = 0
+    private var timeUntilUpdate: Long = 0
     private val MILLIS_PER_SEC = 1000
 
     // инициализация оставшихся полей, которые зависят от других и требуют мат. операции
 
     init {
-        cellSize = min(screenSizeInPixels.x, screenSizeInPixels.y) / screenSizeInCells.x
+        //cellSize = min(screenSizeInPixels.x, screenSizeInPixels.y) / screenSizeInCells.x
         newGame()
     }
 
 
-    fun resetSnake()
-    {
-        for(i in 0 until maxSnakeLength) {
+    fun resetSnake() {
+        for (i in 0 until maxSnakeLength) {
             snakeXs[i] = 0
             snakeYs[i] = 0
         }
@@ -115,8 +114,8 @@ class SnakeGame(context : Context, screenSizeInPixels : Point) : View(context) {
     }
 
 
-    fun isUpdateRequired() : Boolean {
-        if(System.currentTimeMillis() >= timeUntilUpdate) {
+    fun isUpdateRequired(): Boolean {
+        if (System.currentTimeMillis() >= timeUntilUpdate) {
             timeUntilUpdate += MILLIS_PER_SEC / fps
             return true
         }
@@ -125,7 +124,7 @@ class SnakeGame(context : Context, screenSizeInPixels : Point) : View(context) {
     }
 
 
-    var switch : Boolean = true
+    var switch: Boolean = true
 
     override fun onDraw(canvas: Canvas) {
         Log.d("TEST", "draw")
@@ -133,20 +132,24 @@ class SnakeGame(context : Context, screenSizeInPixels : Point) : View(context) {
         canvas.drawColor(Color.BLUE)
         paint.color = Color.WHITE
 
-        for(i in 0 until snakeLength) {
-            canvas.drawRect((snakeXs[i] * cellSize).toFloat(),
+        for (i in 0 until snakeLength) {
+            canvas.drawRect(
+                (snakeXs[i] * cellSize).toFloat(),
                 (snakeYs[i] * cellSize + cellSize).toFloat(),
                 (snakeXs[i] * cellSize + cellSize).toFloat(),
-                (snakeYs[i] * cellSize).toFloat(), paint)
+                (snakeYs[i] * cellSize).toFloat(), paint
+            )
         }
 
         paint.color = Color.RED
 
 
-        canvas.drawRect((food.x * cellSize).toFloat(),
+        canvas.drawRect(
+            (food.x * cellSize).toFloat(),
             (food.y * cellSize + cellSize).toFloat(),
             (food.x * cellSize + cellSize).toFloat(),
-            (food.y * cellSize).toFloat(), paint)
+            (food.y * cellSize).toFloat(), paint
+        )
 
         Log.d("TEST", "drawfinal")
         //invalidate()
@@ -179,7 +182,7 @@ class SnakeGame(context : Context, screenSizeInPixels : Point) : View(context) {
 
         // ставим голове координаты в зависимости от направления
 
-        when(curHeading) {
+        when (curHeading) {
             Heading.UP -> snakeYs[0]++
             Heading.DOWN -> snakeYs[0]--
             Heading.LEFT -> snakeXs[0]--
