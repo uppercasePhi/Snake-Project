@@ -1,40 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#333344"
+        tools:context=".LevelSelect">
 
 
-    <TextView android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:textSize="30sp"
-              android:textAlignment="center"
-              android:text="@string/level_select"/>
+<TextView android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="#CCCCCC"
+          android:textColor="#333344"
+          android:textAlignment="center"
+          android:textSize="30sp"
+          android:text="@string/level_select"
+
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="0"/>
 
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:background="#CCCCCC"
+              android:textColor="#333344"
               android:textSize="20sp"
-              android:text="@string/levels"/>
+              android:text="@string/levels"
+
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintHorizontal_bias="0"
+              app:layout_constraintVertical_bias="0.1"/>
 
 
     <!--> временно, надо заменить на ListView<-->
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#1C6B72"
+            android:textColor="#333344"
+            android:textSize="20sp"
             android:id="@+id/start_button"
-            android:text="1"/>
+            android:text="1"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintVertical_bias="0.17"/>
+
+    <Button android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#1C6B72"
+            android:textColor="#333344"
+            android:textSize="20sp"
+            android:text="4"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.05"
+            app:layout_constraintVertical_bias="0.27"/>
 
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
+              android:background="#CCCCCC"
+              android:textColor="#333344"
               android:textSize="20sp"
-              android:text="@string/extra_levels"/>
+              android:text="@string/extra_levels"
+
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              app:layout_constraintHorizontal_bias="0"
+              app:layout_constraintVertical_bias="0.37"/>
 
 
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="#1C6B72"
+            android:textColor="#333344"
             android:textSize="20sp"
             android:text="@string/main_menu_button"
             android:id="@+id/main_menu_button"
 
-            android:layout_marginTop="100dp"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintVertical_bias="0.95"/>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

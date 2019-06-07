@@ -11,4 +11,8 @@
     <string name="return_button">Return to game</string>
     <string name="level_select_button">Level select</string>
     <string name="pause_button">Pause</string>
+    <string name="up_button">Up</string>
+    <string name="down_button">Down</string>
+    <string name="left_button">Left</string>
+    <string name="right_button">Right</string>
 </resources>
