@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.snakeproject.SnakeGame xmlns:android="http://schemas.android.com/apk/res/android"
-                            android:layout_height="match_parent"
-                            android:layout_width="match_parent"/>
+<com.snakeproject.SnakeGame
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/snakeGame"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"/>

@@ -1,8 +1,8 @@
 package com.snakeproject
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_pause.*
 
 class Pause : AppCompatActivity() {
@@ -12,7 +12,7 @@ class Pause : AppCompatActivity() {
         setContentView(R.layout.activity_pause)
 
         return_button.setOnClickListener {
-            val intent = Intent(this, Game::class.java)
+            val intent = Intent(this, GameActivity::class.java)
             startActivity(intent)
         }
 
