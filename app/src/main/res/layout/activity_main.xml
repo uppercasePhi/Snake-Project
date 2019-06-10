@@ -5,12 +5,15 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background= "@color/colorOne"
         tools:context=".MainActivity">
 
 
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background= "@color/colorThree"
+            android:textColor="@color/colorOne"
             android:text="@string/title"
             android:textSize="40sp"
             android:id="@+id/title"
@@ -19,11 +22,13 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.353"/>
+            app:layout_constraintVertical_bias="0.35"/>
 
 
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background= "@color/colorTwo"
+            android:textColor="@color/colorOne"
             android:text="@string/play_button"
             android:textSize="20sp"
             android:id="@+id/play_button"
@@ -32,13 +37,15 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintVertical_bias="0.453"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.5"/>
 
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background= "@color/colorTwo"
+            android:textColor="@color/colorOne"
             android:text="@string/shop_button"
             android:textSize="20sp"
             android:id="@+id/shop_button"
@@ -47,13 +54,15 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintVertical_bias="0.524"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.6"/>
 
 
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background= "@color/colorTwo"
+            android:textColor="@color/colorOne"
             android:text="@string/settings_button"
             android:textSize="20sp"
             android:id="@+id/settings_button"
@@ -62,7 +71,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintVertical_bias="0.594"/>
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.7"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
