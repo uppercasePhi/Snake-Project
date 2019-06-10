@@ -6,14 +6,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#333344"
+        android:background= "@color/colorOne"
         tools:context=".LevelSelect">
 
 
 <TextView android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:background="#CCCCCC"
-          android:textColor="#333344"
+          android:background= "@color/colorThree"
+          android:textColor="@color/colorOne"
           android:textAlignment="center"
           android:textSize="30sp"
           android:text="@string/level_select"
@@ -26,8 +26,8 @@
 
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:background="#CCCCCC"
-              android:textColor="#333344"
+              android:background= "@color/colorThree"
+              android:textColor="@color/colorOne"
               android:textSize="20sp"
               android:text="@string/levels"
 
@@ -42,8 +42,8 @@
     <!--> временно, надо заменить на ListView<-->
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#1C6B72"
-            android:textColor="#333344"
+            android:background= "@color/colorTwo"
+            android:textColor="@color/colorOne"
             android:textSize="20sp"
             android:id="@+id/start_button"
             android:text="1"
@@ -57,8 +57,8 @@
 
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#1C6B72"
-            android:textColor="#333344"
+            android:background= "@color/colorTwo"
+            android:textColor="@color/colorOne"
             android:textSize="20sp"
             android:text="4"
 
@@ -71,8 +71,8 @@
 
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:background="#CCCCCC"
-              android:textColor="#333344"
+              android:background= "@color/colorThree"
+              android:textColor="@color/colorOne"
               android:textSize="20sp"
               android:text="@string/extra_levels"
 
@@ -86,8 +86,8 @@
 
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#1C6B72"
-            android:textColor="#333344"
+            android:background= "@color/colorTwo"
+            android:textColor="@color/colorOne"
             android:textSize="20sp"
             android:text="@string/main_menu_button"
             android:id="@+id/main_menu_button"

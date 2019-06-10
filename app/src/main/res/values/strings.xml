@@ -1,18 +1,26 @@
 <resources>
     <string name="app_name">Snake Project</string>
     <string name="title">Snake Project</string>
+
     <string name="play_button">Play</string>
     <string name="shop_button">Shop</string>
     <string name="settings_button">Settings</string>
+
     <string name="level_select">Level Select</string>
     <string name="levels">Levels:</string>
     <string name="extra_levels">Extra Levels:</string>
+
     <string name="main_menu_button">Main Menu</string>
     <string name="return_button">Return to game</string>
     <string name="level_select_button">Level select</string>
     <string name="pause_button">Pause</string>
+
     <string name="up_button">Up</string>
     <string name="down_button">Down</string>
     <string name="left_button">Left</string>
     <string name="right_button">Right</string>
+
+    <string name="music">Music</string>
+    <string name="play_music">Play</string>
+    <string name="stop_music">Stop</string>
 </resources>
