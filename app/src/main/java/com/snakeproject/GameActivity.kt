@@ -10,6 +10,12 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+        snakeGame.deadCallback = ::onDeath
+    }
+
+    public fun onDeath() {
+        snakeGame.pauseGame()
+        finish()
     }
 
     override fun onResume() {
@@ -21,6 +27,6 @@ class GameActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        snakeGame.pauseGame();
+        snakeGame.pauseGame()
     }
 }
