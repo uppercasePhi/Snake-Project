@@ -5,14 +5,14 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#333344"
+        android:background="@color/colorOne"
         tools:context=".Pause">
 
 
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#1C6B72"
-            android:textColor="#333344"
+            android:background="@color/colorTwo"
+            android:textColor="@color/colorOne"
             android:textSize="20sp"
             android:text="@string/return_button"
             android:id="@+id/return_button"
@@ -26,8 +26,8 @@
 
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#1C6B72"
-            android:textColor="#333344"
+            android:background="@color/colorTwo"
+            android:textColor="@color/colorOne"
             android:textSize="20sp"
             android:text="@string/level_select_button"
             android:id="@+id/level_select_button"
@@ -41,8 +41,8 @@
 
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#1C6B72"
-            android:textColor="#333344"
+            android:background="@color/colorTwo"
+            android:textColor="@color/colorOne"
             android:textSize="20sp"
             android:text="@string/main_menu_button"
             android:id="@+id/main_menu_button"
