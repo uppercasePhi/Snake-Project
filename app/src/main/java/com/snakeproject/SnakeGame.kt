@@ -22,6 +22,7 @@ class SnakeGame : View {
 
     private enum class Direction { UP, RIGHT, LEFT, DOWN }
 
+
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
@@ -53,14 +54,11 @@ class SnakeGame : View {
     // количество очков игрока
     private var score: Int = 0
 
-    // на паузе ли игра?
-    private var isPaused: Boolean = true
-
-    // параметры для регуляции обновления кадров
-    private var fps = 1
-    private var timeUntilUpdate: Long = 0
-
-    // инициализация оставшихся полей, которые зависят от других и требуют мат. операции
+    init {
+        resetSnake()
+        score = 0
+        spawnFood()
+    }
 
 
     private fun resetSnake() {
@@ -75,16 +73,19 @@ class SnakeGame : View {
     }
 
     val tickTimer = Timer()
+    lateinit var timerTask: TimerTask
 
-    public fun startGame() {
-        resetSnake()
-        isPaused = false
-        score = 0
-        spawnFood()
-        timeUntilUpdate = System.currentTimeMillis()
-        tickTimer.scheduleAtFixedRate(0, TICK_DURATION) {
-            handler.post(::tick)
+
+    public fun resumeGame() {
+        timerTask = tickTimer.scheduleAtFixedRate(0, TICK_DURATION) {
+            if (handler != null) {
+                handler.post(::tick)
+            }
         }
+    }
+
+    public fun pauseGame() {
+        timerTask.cancel();
     }
 
 

@@ -10,8 +10,17 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+    }
+
+    override fun onResume() {
+        super.onResume()
         snakeGame.post {
-            snakeGame.startGame()
+            snakeGame.resumeGame()
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        snakeGame.pauseGame();
     }
 }
