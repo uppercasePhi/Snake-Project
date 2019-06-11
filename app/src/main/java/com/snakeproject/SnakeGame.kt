@@ -179,6 +179,7 @@ class SnakeGame : View {
         }
     }
 
+    // food funs
 
     private fun spawnFood() {
         food.x = Random.nextInt(SCREEN_SIZE_IN_CELLS)
@@ -193,6 +194,20 @@ class SnakeGame : View {
 
     }
 
+
+    private fun foodCheck() {
+        if (snakeXs[0] == food.x && snakeYs[0] == food.y) {
+            eatFood()
+        }
+    }
+
+    // superFood funs
+
+    private fun superFoodCheck() {
+        if (snakeXs[0] == superFood.x && snakeYs[0] == superFood.y) {
+            eatSuperFood()
+        }
+    }
 
     private fun eatSuperFood() {
         score += 50
@@ -227,6 +242,7 @@ class SnakeGame : View {
         deadCallback()
     }
 
+    // move and death detection
 
     private fun moveSnake() {
         for (i in snakeLength downTo 1) {
@@ -256,19 +272,6 @@ class SnakeGame : View {
                     death()
                 }
             }
-        }
-    }
-
-
-    private fun foodCheck() {
-        if (snakeXs[0] == food.x && snakeYs[0] == food.y) {
-            eatFood()
-        }
-    }
-
-    private fun superFoodCheck() {
-        if (snakeXs[0] == superFood.x && snakeYs[0] == superFood.y) {
-            eatSuperFood()
         }
     }
 }
