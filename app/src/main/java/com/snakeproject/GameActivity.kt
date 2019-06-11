@@ -7,26 +7,32 @@ import kotlinx.android.synthetic.main.activity_game.*
 
 class GameActivity : AppCompatActivity() {
 
+    var snakeGame: SnakeGame? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_game)
-        snakeGame.deadCallback = ::onDeath
+        val level = intent.getIntExtra("level", 20)
+        snakeGame = SnakeGame(this, level)
+
+        setContentView(snakeGame)
+
+        snakeGame!!.deadCallback = ::onDeath
     }
 
     public fun onDeath() {
-        snakeGame.pauseGame()
+        snakeGame!!.pauseGame()
         finish()
     }
 
     override fun onResume() {
         super.onResume()
-        snakeGame.post {
-            snakeGame.resumeGame()
+        snakeGame!!.post {
+            snakeGame!!.resumeGame()
         }
     }
 
     override fun onPause() {
         super.onPause()
-        snakeGame.pauseGame()
+        snakeGame!!.pauseGame()
     }
 }

@@ -26,6 +26,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
+        records_button.setOnClickListener {
+            val intent = Intent(this, LeaderBoard::class.java)
+            startActivity(intent)
+        }
     }
 }
