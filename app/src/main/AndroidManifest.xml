@@ -11,6 +11,12 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             tools:ignore="GoogleAppIndexingWarning">
+        <service
+                android:name=".PlayerService"
+                android:enabled="true"
+                android:exported="true">
+        </service>
+
         <activity android:name=".Pause">
         </activity>
         <activity
@@ -21,6 +27,8 @@
                 tools:ignore="UnusedAttribute">
         </activity>
         <activity android:name=".Shop">
+        </activity>
+        <activity android:name=".LeaderBoard">
         </activity>
         <activity android:name=".Settings">
         </activity>

@@ -74,4 +74,20 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintVertical_bias="0.7"/>
 
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background= "@color/colorTwo"
+            android:textColor="@color/colorOne"
+            android:text="@string/records_button"
+            android:textSize="20sp"
+            android:id="@+id/records_button"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintVertical_bias="0.8"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

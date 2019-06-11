@@ -5,6 +5,7 @@
     <string name="play_button">Play</string>
     <string name="shop_button">Shop</string>
     <string name="settings_button">Settings</string>
+    <string name="records_button">Records</string>
 
     <string name="level_select">Level Select</string>
     <string name="levels">Levels:</string>
@@ -23,4 +24,6 @@
     <string name="music">Music</string>
     <string name="play_music">Play</string>
     <string name="stop_music">Stop</string>
+
+    <string name="records">Records</string>
 </resources>
