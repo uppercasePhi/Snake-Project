@@ -9,7 +9,6 @@ import kotlinx.android.synthetic.main.activity_shop.*
 import kotlinx.android.synthetic.main.activity_shop.main_menu_button
 
 class Settings : AppCompatActivity() {
-    lateinit var mySong : MediaPlayer
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -18,16 +17,34 @@ class Settings : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        mySong = MediaPlayer.create(this, R.raw.ooo);
+
+        fun onPlay() {
+            val myService = Intent(this, PlayerService::class.java)
+            myService.setAction("PLAY")
+            startService(myService)
+        }
 
         musicon.setOnClickListener {
-            mySong.start()
-            mySong.isLooping = true
+            onPlay()
+        }
+
+        fun onPause() {
+            val myService = Intent(this, PlayerService::class.java)
+            myService.setAction("PAUSE")
+            startService(myService)
         }
 
         musicoff.setOnClickListener {
-            mySong.pause()
+          onPause()
         }
 
+//        fun UpVolume()
+//        {
+//
+//        }
+//
+//        musicup.setOnClickListener {
+//
+//        }
     }
 }
