@@ -1,11 +1,11 @@
 package com.snakeproject
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
-import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.MainThread
 import java.util.*
@@ -13,17 +13,12 @@ import kotlin.concurrent.scheduleAtFixedRate
 import kotlin.math.min
 import kotlin.random.Random
 
+@SuppressLint("ViewConstructor")
 class SnakeGame(context: Context, level: Int) : View(context) {
-   
-
     private enum class Direction { UP, RIGHT, LEFT, DOWN }
 
-    //constructor(context: Context?) : super(context)
-    //constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    //constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
-
     private val screenSizeInCells = level
-    private var TICK_DURATION = 200L
+    private var tickDuration = 200L
 
     private var viewWidth = -1
     private var viewHeight = -1
@@ -33,7 +28,7 @@ class SnakeGame(context: Context, level: Int) : View(context) {
         super.onSizeChanged(w, h, oldw, oldh)
         viewHeight = h
         viewWidth = w
-        cellSize = min(viewWidth, viewHeight) / screenSizeInCells
+        cellSize = min(this.viewWidth, this.viewHeight) / screenSizeInCells
     }
 
     private var curHeadingDirection = Direction.UP
@@ -47,7 +42,7 @@ class SnakeGame(context: Context, level: Int) : View(context) {
     private var superFoodTimer = 0
 
     private var snakeLength: Int = 0
-    private val maxSnakeLength = SCREEN_SIZE_IN_CELLS * SCREEN_SIZE_IN_CELLS
+    private val maxSnakeLength = screenSizeInCells * screenSizeInCells
     private var snakeXs = Array(maxSnakeLength) { 0 }
     private var snakeYs = Array(maxSnakeLength) { 0 }
 
@@ -108,7 +103,7 @@ class SnakeGame(context: Context, level: Int) : View(context) {
 
 
     fun resumeGame() {
-        timerTask = tickTimer.scheduleAtFixedRate(0, TICK_DURATION) {
+        timerTask = tickTimer.scheduleAtFixedRate(0, tickDuration) {
             if (handler != null) {
                 handler.post(::tick)
             }
@@ -181,8 +176,7 @@ class SnakeGame(context: Context, level: Int) : View(context) {
 
     // food funs
 
-
-    fun spawnFood() {
+    private fun spawnFood() {
         food.x = Random.nextInt(screenSizeInCells)
         food.y = Random.nextInt(screenSizeInCells)
     }
@@ -221,8 +215,8 @@ class SnakeGame(context: Context, level: Int) : View(context) {
         if (Random.nextInt(50) == 1) {
             isSuperFoodActive = true
             superFoodTimer = 30
-            superFood.x = Random.nextInt(SCREEN_SIZE_IN_CELLS)
-            superFood.y = Random.nextInt(SCREEN_SIZE_IN_CELLS)
+            superFood.x = Random.nextInt(screenSizeInCells)
+            superFood.y = Random.nextInt(screenSizeInCells)
         }
     }
 
@@ -260,7 +254,7 @@ class SnakeGame(context: Context, level: Int) : View(context) {
     }
 
 
-    fun checkDeath() {
+    private fun deathCheck() {
         if (snakeXs[0] >= screenSizeInCells || snakeYs[0] >= screenSizeInCells ||
             snakeXs[0] < 0 || snakeYs[0] < 0
         ) {
