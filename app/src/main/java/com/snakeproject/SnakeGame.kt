@@ -37,12 +37,20 @@ class SnakeGame : View {
     }
 
     private var curHeadingDirection = Direction.UP
+
     private val paint = Paint()
+
     private var food: Point = Point(0, 0)
+
+    private var superFood: Point = Point(0, 0)
+    private var isSuperFoodActive = false
+    private var superFoodTimer = 0
+
     private var snakeLength: Int = 0
     private val maxSnakeLength = SCREEN_SIZE_IN_CELLS * SCREEN_SIZE_IN_CELLS
     private var snakeXs = Array(maxSnakeLength) { 0 }
     private var snakeYs = Array(maxSnakeLength) { 0 }
+
     private var score: Int = 0
 
     lateinit var deadCallback: () -> Unit
@@ -115,8 +123,11 @@ class SnakeGame : View {
 
     @MainThread
     private fun tick() {
+        superFoodControl()
         moveSnake()
         deathCheck()
+        if (isSuperFoodActive)
+            superFoodCheck()
         foodCheck()
         invalidate()
     }
@@ -152,10 +163,20 @@ class SnakeGame : View {
         paint.color = Color.RED
         canvas.drawRect(
             (food.x * cellSize).toFloat(),
-            (food.y * cellSize + cellSize).toFloat(),
-            (food.x * cellSize + cellSize).toFloat(),
+            ((food.y + 1) * cellSize).toFloat(),
+            ((food.x + 1) * cellSize).toFloat(),
             (food.y * cellSize).toFloat(), paint
         )
+
+        if (isSuperFoodActive) {
+            paint.color = Color.MAGENTA
+            canvas.drawRect(
+                (superFood.x * cellSize).toFloat(),
+                ((superFood.y + 1) * cellSize).toFloat(),
+                ((superFood.x + 1) * cellSize).toFloat(),
+                (superFood.y * cellSize).toFloat(), paint
+            )
+        }
     }
 
 
@@ -170,6 +191,35 @@ class SnakeGame : View {
         snakeLength++
         spawnFood()
 
+    }
+
+
+    private fun eatSuperFood() {
+        score += 50
+        snakeLength++
+        isSuperFoodActive = false
+    }
+
+
+    private fun spawnSuperFood() {
+        if (Random.nextInt(50) == 1) {
+            isSuperFoodActive = true
+            superFoodTimer = 30
+            superFood.x = Random.nextInt(SCREEN_SIZE_IN_CELLS)
+            superFood.y = Random.nextInt(SCREEN_SIZE_IN_CELLS)
+        }
+    }
+
+
+    private fun superFoodControl() {
+        if (!isSuperFoodActive) {
+            spawnSuperFood()
+        } else {
+            superFoodTimer--
+            if (superFoodTimer == 0) {
+                isSuperFoodActive = false
+            }
+        }
     }
 
 
@@ -213,6 +263,12 @@ class SnakeGame : View {
     private fun foodCheck() {
         if (snakeXs[0] == food.x && snakeYs[0] == food.y) {
             eatFood()
+        }
+    }
+
+    private fun superFoodCheck() {
+        if (snakeXs[0] == superFood.x && snakeYs[0] == superFood.y) {
+            eatSuperFood()
         }
     }
 }
