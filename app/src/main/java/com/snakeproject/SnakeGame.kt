@@ -15,9 +15,8 @@ import kotlin.random.Random
 
 class SnakeGame : View {
     companion object {
-        const val SCREEN_SIZE_IN_CELLS = 20
-        //val TICK_DURATION = TimeUnit.SECONDS.toMillis(0.2)
-        var TICK_DURATION = 200L
+        private const val SCREEN_SIZE_IN_CELLS = 20
+        private var TICK_DURATION = 200L
     }
 
     private enum class Direction { UP, RIGHT, LEFT, DOWN }
@@ -39,28 +38,35 @@ class SnakeGame : View {
 
     private var curHeadingDirection = Direction.UP
 
-    val paint = Paint()
+    private val paint = Paint()
 
-    var food: Point = Point(0, 0)
+    private var food: Point = Point(0, 0)
 
-    // длина змейки (удобнее хранить её, чем использовать длину snakePoints)
+    private var superFood: Point = Point(0, 0)
+    private var isSuperFoodActive = false
+    private var superFoodTimer = 0
+
     private var snakeLength: Int = 0
-    private val maxSnakeLength = 200
+    private val maxSnakeLength = SCREEN_SIZE_IN_CELLS * SCREEN_SIZE_IN_CELLS
+    private var snakeXs = Array(maxSnakeLength) { 0 }
+    private var snakeYs = Array(maxSnakeLength) { 0 }
 
-    var snakeXs = Array(maxSnakeLength) { 0 }
-    var snakeYs = Array(maxSnakeLength) { 0 }
-
-    // количество очков игрока
     private var score: Int = 0
 
-    public lateinit var deadCallback: () -> Unit
+    lateinit var deadCallback: () -> Unit
+    private val tickTimer = Timer()
+    private lateinit var timerTask: TimerTask
 
 
     init {
+        startGame()
+    }
+
+
+    private fun startGame() {
         resetSnake()
         score = 0
         spawnFood()
-
         setOnTouchListener(object : OnSwipeTouchListener(this.context) {
             override fun onSwipeDown() {
                 if (curHeadingDirection != Direction.UP) {
@@ -95,16 +101,13 @@ class SnakeGame : View {
             snakeYs[i] = 0
         }
 
-        snakeLength = 3
+        snakeLength = 1
         snakeXs[0] = SCREEN_SIZE_IN_CELLS / 2
         snakeYs[0] = SCREEN_SIZE_IN_CELLS / 2
     }
 
-    val tickTimer = Timer()
-    lateinit var timerTask: TimerTask
 
-
-    public fun resumeGame() {
+    fun resumeGame() {
         timerTask = tickTimer.scheduleAtFixedRate(0, TICK_DURATION) {
             if (handler != null) {
                 handler.post(::tick)
@@ -112,15 +115,19 @@ class SnakeGame : View {
         }
     }
 
-    public fun pauseGame() {
+
+    fun pauseGame() {
         timerTask.cancel()
     }
 
 
     @MainThread
     private fun tick() {
+        superFoodControl()
         moveSnake()
-        checkDeath()
+        deathCheck()
+        if (isSuperFoodActive)
+            superFoodCheck()
         foodCheck()
         invalidate()
     }
@@ -154,25 +161,33 @@ class SnakeGame : View {
         }
 
         paint.color = Color.RED
-
-
         canvas.drawRect(
             (food.x * cellSize).toFloat(),
-            (food.y * cellSize + cellSize).toFloat(),
-            (food.x * cellSize + cellSize).toFloat(),
+            ((food.y + 1) * cellSize).toFloat(),
+            ((food.x + 1) * cellSize).toFloat(),
             (food.y * cellSize).toFloat(), paint
         )
+
+        if (isSuperFoodActive) {
+            paint.color = Color.MAGENTA
+            canvas.drawRect(
+                (superFood.x * cellSize).toFloat(),
+                ((superFood.y + 1) * cellSize).toFloat(),
+                ((superFood.x + 1) * cellSize).toFloat(),
+                (superFood.y * cellSize).toFloat(), paint
+            )
+        }
     }
 
-    // методы для спавна и обработки поедания еды
+    // food funs
 
-    fun spawnFood() {
-        food.x = Random.nextInt(20)
-        food.y = Random.nextInt(20)
+    private fun spawnFood() {
+        food.x = Random.nextInt(SCREEN_SIZE_IN_CELLS)
+        food.y = Random.nextInt(SCREEN_SIZE_IN_CELLS)
     }
 
 
-    fun eatFood() {
+    private fun eatFood() {
         score += 10
         snakeLength++
         spawnFood()
@@ -180,23 +195,60 @@ class SnakeGame : View {
     }
 
 
-    fun death() {
-        deadCallback()
+    private fun foodCheck() {
+        if (snakeXs[0] == food.x && snakeYs[0] == food.y) {
+            eatFood()
+        }
+    }
+
+    // superFood funs
+
+    private fun superFoodCheck() {
+        if (snakeXs[0] == superFood.x && snakeYs[0] == superFood.y) {
+            eatSuperFood()
+        }
+    }
+
+    private fun eatSuperFood() {
+        score += 50
+        snakeLength++
+        isSuperFoodActive = false
     }
 
 
-    // изменение точек змейки
+    private fun spawnSuperFood() {
+        if (Random.nextInt(50) == 1) {
+            isSuperFoodActive = true
+            superFoodTimer = 30
+            superFood.x = Random.nextInt(SCREEN_SIZE_IN_CELLS)
+            superFood.y = Random.nextInt(SCREEN_SIZE_IN_CELLS)
+        }
+    }
 
-    fun moveSnake() {
 
-        // ставим всем точкам змейки кроме головы координаты следующей точки
+    private fun superFoodControl() {
+        if (!isSuperFoodActive) {
+            spawnSuperFood()
+        } else {
+            superFoodTimer--
+            if (superFoodTimer == 0) {
+                isSuperFoodActive = false
+            }
+        }
+    }
 
+
+    private fun death() {
+        deadCallback()
+    }
+
+    // move and death detection
+
+    private fun moveSnake() {
         for (i in snakeLength downTo 1) {
             snakeXs[i] = snakeXs[i - 1]
             snakeYs[i] = snakeYs[i - 1]
         }
-
-        // ставим голове координаты в зависимости от направления
 
         when (curHeadingDirection) {
             Direction.UP -> snakeYs[0]--
@@ -207,25 +259,19 @@ class SnakeGame : View {
     }
 
 
-    fun checkDeath() {
+    private fun deathCheck() {
         if (snakeXs[0] >= SCREEN_SIZE_IN_CELLS || snakeYs[0] >= SCREEN_SIZE_IN_CELLS ||
             snakeXs[0] < 0 || snakeYs[0] < 0
         ) {
             death()
         }
 
-        if (snakeLength >= 4)
-            for (i in 3 until snakeLength) {
+        if (snakeLength >= 4) {
+            for (i in 1 until snakeLength) {
                 if (snakeXs[0] == snakeXs[i] && snakeYs[0] == snakeYs[i]) {
                     death()
                 }
             }
-    }
-
-
-    fun foodCheck() {
-        if (snakeXs[0] == food.x && snakeYs[0] == food.y) {
-            eatFood()
         }
     }
 }
