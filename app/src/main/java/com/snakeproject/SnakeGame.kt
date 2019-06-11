@@ -13,18 +13,19 @@ import kotlin.concurrent.scheduleAtFixedRate
 import kotlin.math.min
 import kotlin.random.Random
 
-class SnakeGame : View {
+class SnakeGame(context: Context, level: Int) : View(context) {
     companion object {
-        const val SCREEN_SIZE_IN_CELLS = 20
         //val TICK_DURATION = TimeUnit.SECONDS.toMillis(0.2)
-        var TICK_DURATION = 200L
     }
 
     private enum class Direction { UP, RIGHT, LEFT, DOWN }
 
-    constructor(context: Context?) : super(context)
-    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
-    constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+    //constructor(context: Context?) : super(context)
+    //constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    //constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
+
+    private val screenSizeInCells = level
+    private var TICK_DURATION = 200L
 
     private var viewWidth = -1
     private var viewHeight = -1
@@ -34,7 +35,7 @@ class SnakeGame : View {
         super.onSizeChanged(w, h, oldw, oldh)
         viewHeight = h
         viewWidth = w
-        cellSize = min(viewWidth, viewHeight) / SCREEN_SIZE_IN_CELLS
+        cellSize = min(viewWidth, viewHeight) / screenSizeInCells
     }
 
     private var curHeadingDirection = Direction.UP
@@ -96,8 +97,8 @@ class SnakeGame : View {
         }
 
         snakeLength = 3
-        snakeXs[0] = SCREEN_SIZE_IN_CELLS / 2
-        snakeYs[0] = SCREEN_SIZE_IN_CELLS / 2
+        snakeXs[0] = screenSizeInCells / 2
+        snakeYs[0] = screenSizeInCells / 2
     }
 
     val tickTimer = Timer()
@@ -132,15 +133,15 @@ class SnakeGame : View {
 
         canvas.drawRect(
             0f,
-            (cellSize * SCREEN_SIZE_IN_CELLS).toFloat(),
-            (cellSize * SCREEN_SIZE_IN_CELLS).toFloat(),
+            (cellSize * screenSizeInCells).toFloat(),
+            (cellSize * screenSizeInCells).toFloat(),
             0f,
             paint
         )
 
         paint.color = Color.BLACK
         paint.textSize = 90F
-        canvas.drawText("Score: $score", 0f, (cellSize * (SCREEN_SIZE_IN_CELLS + 3)).toFloat(), paint)
+        canvas.drawText("Score: $score", 0f, (cellSize * (screenSizeInCells + 3)).toFloat(), paint)
 
         paint.color = Color.BLUE
 
@@ -167,8 +168,8 @@ class SnakeGame : View {
     // методы для спавна и обработки поедания еды
 
     fun spawnFood() {
-        food.x = Random.nextInt(20)
-        food.y = Random.nextInt(20)
+        food.x = Random.nextInt(screenSizeInCells)
+        food.y = Random.nextInt(screenSizeInCells)
     }
 
 
@@ -208,7 +209,7 @@ class SnakeGame : View {
 
 
     fun checkDeath() {
-        if (snakeXs[0] >= SCREEN_SIZE_IN_CELLS || snakeYs[0] >= SCREEN_SIZE_IN_CELLS ||
+        if (snakeXs[0] >= screenSizeInCells || snakeYs[0] >= screenSizeInCells ||
             snakeXs[0] < 0 || snakeYs[0] < 0
         ) {
             death()

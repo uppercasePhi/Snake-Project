@@ -11,18 +11,26 @@ class LevelSelect : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_level_select)
 
+        val tag = "level"
+
         start_button_10.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
+            intent.putExtra(tag, 10)
+
             startActivity(intent)
         }
 
         start_button_15.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
+            intent.putExtra(tag, 15)
+
             startActivity(intent)
         }
 
         start_button_20.setOnClickListener {
             val intent = Intent(this, GameActivity::class.java)
+            intent.putExtra(tag, 20)
+
             startActivity(intent)
         }
 
