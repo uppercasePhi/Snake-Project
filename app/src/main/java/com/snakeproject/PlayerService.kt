@@ -38,6 +38,7 @@ class PlayerService : Service() {
     }
 
     override fun onDestroy() {
+        println("service stopped")
         player.stop()
         player.release()
     }

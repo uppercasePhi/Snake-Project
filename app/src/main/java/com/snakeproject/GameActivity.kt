@@ -29,10 +29,14 @@ class GameActivity : AppCompatActivity() {
         snakeGame!!.post {
             snakeGame!!.resumeGame()
         }
+
+        println("resume")
     }
 
     override fun onPause() {
         super.onPause()
         snakeGame!!.pauseGame()
+
+        println("pause")
     }
 }
