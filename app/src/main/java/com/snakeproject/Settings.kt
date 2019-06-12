@@ -3,9 +3,7 @@ package com.snakeproject
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.media.MediaPlayer;
 import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.android.synthetic.main.activity_shop.*
 import kotlinx.android.synthetic.main.activity_shop.main_menu_button
 
 class Settings : AppCompatActivity() {
