@@ -233,6 +233,7 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
 
 
     private fun death() {
+        scoreManager.addScore(score)
         deadCallback()
     }
 
@@ -298,3 +299,4 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
         return table[x][y]
     }
 }
+

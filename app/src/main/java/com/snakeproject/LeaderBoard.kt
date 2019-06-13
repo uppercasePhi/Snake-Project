@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_leader_board.*
 class LeaderBoard : AppCompatActivity() {
     lateinit var listView: ListView
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_leader_board)
@@ -24,8 +25,9 @@ class LeaderBoard : AppCompatActivity() {
         }
         listView = findViewById(R.id.main_listview)
 
-        var personArray = arrayOf("Daniil", "Nik", "Filipp", "Pavel")
-        listView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, personArray)
+
+        var l = scoreManager.getTopScores(10).map { it.toString() }.toTypedArray()
+        listView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, l)
 
 //        val listView = findViewById<ListView>(R.id.main_listview)
 //        val color = Color.parseColor("FF0000")
@@ -63,5 +65,6 @@ class LeaderBoard : AppCompatActivity() {
 //    }
 
 }
+
 
 
