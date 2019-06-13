@@ -23,4 +23,8 @@
             app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintVertical_bias="0.95"/>
 
+    <ListView android:id="@+id/main_listview"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

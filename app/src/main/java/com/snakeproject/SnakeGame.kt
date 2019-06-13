@@ -22,7 +22,6 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     private var viewWidth = -1
     private var viewHeight = -1
     private var cellSize: Int = -1
-
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
         viewHeight = h
