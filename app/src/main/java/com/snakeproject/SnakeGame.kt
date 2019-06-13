@@ -17,7 +17,9 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     private enum class Direction { UP, RIGHT, LEFT, DOWN }
 
     private val screenSizeInCells = level
-    private var tickDuration = 200L
+    private val tickDuration = 10L
+    private var tickAmount = 40
+    private var curTick = 0
 
     private var viewWidth = -1
     private var viewHeight = -1
@@ -117,13 +119,18 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
 
     @MainThread
     private fun tick() {
-        superFoodControl()
-        moveSnake()
-        deathCheck()
-        if (isSuperFoodActive)
-            superFoodCheck()
-        foodCheck()
-        invalidate()
+        if (curTick == tickAmount) {
+            curTick = 0
+            superFoodControl()
+            moveSnake()
+            deathCheck()
+            if (isSuperFoodActive)
+                superFoodCheck()
+            foodCheck()
+            invalidate()
+        } else {
+            curTick++
+        }
     }
 
 
@@ -175,6 +182,13 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
 
     // food funs
 
+    private fun decreaseTickAmount() {
+        if (tickAmount > 10) {
+            tickAmount--
+        }
+    }
+
+
     private fun spawnFood() {
         food.x = Random.nextInt(screenSizeInCells)
         food.y = Random.nextInt(screenSizeInCells)
@@ -184,6 +198,7 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     private fun eatFood() {
         score += 10
         snakeLength++
+        decreaseTickAmount()
         spawnFood()
 
     }
@@ -206,6 +221,7 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     private fun eatSuperFood() {
         score += 50
         snakeLength++
+        decreaseTickAmount()
         isSuperFoodActive = false
     }
 
@@ -213,7 +229,7 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     private fun spawnSuperFood() {
         if (Random.nextInt(50) == 1) {
             isSuperFoodActive = true
-            superFoodTimer = 30
+            superFoodTimer = 20
             superFood.x = Random.nextInt(screenSizeInCells)
             superFood.y = Random.nextInt(screenSizeInCells)
         }
