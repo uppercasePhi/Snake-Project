@@ -271,7 +271,7 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     }
 
     fun color(x: Int, y: Int): Int {
-        var table: Array<Array<Int>> = Array(20, { Array(3, { 0 }) })
+        val table: Array<Array<Int>> = Array(20, { Array(3, { 0 }) })
         table[0] = arrayOf(34, 34, 34)
         table[1] = arrayOf(68, 68, 68)
         table[2] = arrayOf(255, 255, 255)
@@ -298,5 +298,6 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
 
         return table[x][y]
     }
+
 }
 
