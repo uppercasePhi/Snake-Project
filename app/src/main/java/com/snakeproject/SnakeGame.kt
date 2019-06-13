@@ -3,7 +3,6 @@ package com.snakeproject
 import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Point
 import android.view.View
@@ -14,7 +13,7 @@ import kotlin.math.min
 import kotlin.random.Random
 
 @SuppressLint("ViewConstructor")
-class SnakeGame(context: Context, level: Int) : View(context) {
+class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     private enum class Direction { UP, RIGHT, LEFT, DOWN }
 
     private val screenSizeInCells = level
@@ -52,6 +51,7 @@ class SnakeGame(context: Context, level: Int) : View(context) {
     private val tickTimer = Timer()
     private lateinit var timerTask: TimerTask
 
+    private var colorKit = kitNumber * 5
 
     init {
         startGame()
@@ -129,8 +129,8 @@ class SnakeGame(context: Context, level: Int) : View(context) {
 
 
     override fun onDraw(canvas: Canvas) {
-        canvas.drawColor(Color.WHITE)
-        paint.color = Color.LTGRAY
+        canvas.drawRGB(color((0 + colorKit), 0), color((0 + colorKit), 1), color((0 + colorKit), 2))
+        paint.setARGB(255, color((1 + colorKit), 0), color((1 + colorKit), 1), color((1 + colorKit), 2))
 
         canvas.drawRect(
             0f,
@@ -140,11 +140,11 @@ class SnakeGame(context: Context, level: Int) : View(context) {
             paint
         )
 
-        paint.color = Color.BLACK
+        paint.setARGB(255, color((2 + colorKit), 0), color((2 + colorKit), 1), color((2 + colorKit), 2))
         paint.textSize = 90F
         canvas.drawText("Score: $score", 0f, (cellSize * (screenSizeInCells + 3)).toFloat(), paint)
 
-        paint.color = Color.BLUE
+        paint.setARGB(255, color((4 + colorKit), 0), color((4 + colorKit), 1), color((4 + colorKit), 2))
 
         for (i in 0 until snakeLength) {
             canvas.drawRect(
@@ -155,7 +155,7 @@ class SnakeGame(context: Context, level: Int) : View(context) {
             )
         }
 
-        paint.color = Color.RED
+        paint.setARGB(255, color((3 + colorKit), 0), color((3 + colorKit), 1), color((3 + colorKit), 2))
         canvas.drawRect(
             (food.x * cellSize).toFloat(),
             ((food.y + 1) * cellSize).toFloat(),
@@ -164,7 +164,7 @@ class SnakeGame(context: Context, level: Int) : View(context) {
         )
 
         if (isSuperFoodActive) {
-            paint.color = Color.MAGENTA
+            paint.setARGB(255, color((2 + colorKit), 0), color((2 + colorKit), 1), color((2 + colorKit), 2))
             canvas.drawRect(
                 (superFood.x * cellSize).toFloat(),
                 ((superFood.y + 1) * cellSize).toFloat(),
@@ -268,5 +268,34 @@ class SnakeGame(context: Context, level: Int) : View(context) {
                 }
             }
         }
+    }
+
+    fun color(x: Int, y: Int): Int {
+        var table: Array<Array<Int>> = Array(20, { Array(3, { 0 }) })
+        table[0] = arrayOf(34, 34, 34)
+        table[1] = arrayOf(68, 68, 68)
+        table[2] = arrayOf(255, 255, 255)
+        table[3] = arrayOf(0, 0, 0)
+        table[4] = arrayOf(221, 221, 0)
+
+        table[5] = arrayOf(51, 51, 68)
+        table[6] = arrayOf(204, 204, 204)
+        table[7] = arrayOf(255, 228, 181)
+        table[8] = arrayOf(216, 27, 96)
+        table[9] = arrayOf(28, 107, 114)
+
+        table[10] = arrayOf(0, 0, 160)
+        table[11] = arrayOf(111, 111, 111)
+        table[12] = arrayOf(255, 255, 255)
+        table[13] = arrayOf(0, 180, 239)
+        table[14] = arrayOf(239, 0, 0)
+
+        table[15] = arrayOf(13, 31, 63)
+        table[16] = arrayOf(255, 255, 255)
+        table[17] = arrayOf(255, 199, 2)
+        table[18] = arrayOf(78, 143, 207)
+        table[19] = arrayOf(143, 33, 47)
+
+        return table[x][y]
     }
 }

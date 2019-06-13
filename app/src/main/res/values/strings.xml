@@ -3,7 +3,7 @@
     <string name="title">Snake Project</string>
 
     <string name="play_button">Play</string>
-    <string name="shop_button">Shop</string>
+    <string name="shop_button">Themes</string>
     <string name="settings_button">Settings</string>
     <string name="records_button">Records</string>
 
@@ -26,4 +26,5 @@
     <string name="stop_music">Stop</string>
 
     <string name="records">Records</string>
+    <string name="themes">Themes of game</string>
 </resources>

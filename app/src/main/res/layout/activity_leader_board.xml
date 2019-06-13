@@ -11,7 +11,7 @@
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background= "@color/colorTwo"
-            android:textColor="@color/colorOne"
+            android:textColor="@color/colorThree"
             android:textSize="20sp"
             android:text="@string/main_menu_button"
             android:id="@+id/main_menu"

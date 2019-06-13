@@ -2,7 +2,6 @@ package com.snakeproject
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_game.*
 
 
 class GameActivity : AppCompatActivity() {
@@ -12,7 +11,9 @@ class GameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val level = intent.getIntExtra("level", 20)
-        snakeGame = SnakeGame(this, level)
+        var kitNumber = intent.getIntExtra("kit", 1)
+
+        snakeGame = SnakeGame(this, level, kitNumber)
 
         setContentView(snakeGame)
 
@@ -29,14 +30,10 @@ class GameActivity : AppCompatActivity() {
         snakeGame!!.post {
             snakeGame!!.resumeGame()
         }
-
-        println("resume")
     }
 
     override fun onPause() {
         super.onPause()
         snakeGame!!.pauseGame()
-
-        println("pause")
     }
 }
