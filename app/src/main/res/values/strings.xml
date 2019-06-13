@@ -27,4 +27,8 @@
 
     <string name="records">Records</string>
     <string name="themes">Themes of game</string>
+    <string name="yellow_and_black">Yellow and black</string>
+    <string name="cyan_and_purple">Cyan and purple</string>
+    <string name="red_and_blue">Red and blue</string>
+    <string name="cherry_and_teal">Cherry and teal</string>
 </resources>

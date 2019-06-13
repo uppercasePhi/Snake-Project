@@ -25,9 +25,9 @@
             app:layout_constraintVertical_bias="0.35"/>
 
 
-    <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background= "@color/colorTwo"
+    <Button android:layout_width="98dp"
+            android:layout_height="49dp"
+            android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
             android:text="@string/play_button"
             android:textSize="20sp"
@@ -42,9 +42,9 @@
 
 
     <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background= "@color/colorTwo"
+            android:layout_width="98dp"
+            android:layout_height="49dp"
+            android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
             android:text="@string/shop_button"
             android:textSize="20sp"
@@ -59,9 +59,9 @@
 
 
     <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background= "@color/colorTwo"
+            android:layout_width="98dp"
+            android:layout_height="49dp"
+            android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
             android:text="@string/settings_button"
             android:textSize="20sp"
@@ -75,9 +75,9 @@
             app:layout_constraintVertical_bias="0.7"/>
 
     <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background= "@color/colorTwo"
+            android:layout_width="98dp"
+            android:layout_height="49dp"
+            android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
             android:text="@string/records_button"
             android:textSize="20sp"

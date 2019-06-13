@@ -22,12 +22,12 @@
               app:layout_constraintTop_toTopOf="parent"
               app:layout_constraintVertical_bias="0"/>
 
-    <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <Button android:layout_width="192dp"
+            android:layout_height="48dp"
             android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
             android:textSize="20sp"
-            android:text="1"
+            android:text="@string/yellow_and_black"
             android:id="@+id/theme_of_game_one"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -37,50 +37,50 @@
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintVertical_bias="0.1"/>
 
-    <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background= "@color/colorTwo"
+    <Button android:layout_width="192dp"
+            android:layout_height="48dp"
+            android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
             android:textSize="20sp"
-            android:text="2"
+            android:text="@string/cyan_and_purple"
             android:id="@+id/theme_of_game_two"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
-            app:layout_constraintVertical_bias="0.1"/>
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintVertical_bias="0.188"/>
 
-    <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <Button android:layout_width="192dp"
+            android:layout_height="48dp"
             android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
             android:textSize="20sp"
-            android:text="3"
+            android:text="@string/red_and_blue"
             android:id="@+id/theme_of_game_three"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.7"
-            app:layout_constraintVertical_bias="0.1"/>
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintVertical_bias="0.278"/>
 
-    <Button android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+    <Button android:layout_width="192dp"
+            android:layout_height="48dp"
             android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
             android:textSize="20sp"
-            android:text="4"
+            android:text="@string/cherry_and_teal"
             android:id="@+id/theme_of_game_four"
 
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0.1"
-            app:layout_constraintVertical_bias="0.2"/>
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintVertical_bias="0.37"/>
 
     <Button android:layout_width="wrap_content"
             android:layout_height="wrap_content"
