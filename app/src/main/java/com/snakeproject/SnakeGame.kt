@@ -46,6 +46,8 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     private var snakeXs = Array(maxSnakeLength) { 0 }
     private var snakeYs = Array(maxSnakeLength) { 0 }
 
+    private var didHeadingChange = false
+
     public var score: Int = 0
 
     lateinit var deadCallback: () -> Unit
@@ -65,25 +67,29 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
         spawnFood()
         setOnTouchListener(object : OnSwipeTouchListener(this.context) {
             override fun onSwipeDown() {
-                if (curHeadingDirection != Direction.UP) {
+                if (curHeadingDirection != Direction.UP && !didHeadingChange) {
+                    didHeadingChange = true
                     curHeadingDirection = Direction.DOWN
                 }
             }
 
             override fun onSwipeLeft() {
-                if (curHeadingDirection != Direction.RIGHT) {
+                if (curHeadingDirection != Direction.RIGHT && !didHeadingChange) {
+                    didHeadingChange = true
                     curHeadingDirection = Direction.LEFT
                 }
             }
 
             override fun onSwipeRight() {
-                if (curHeadingDirection != Direction.LEFT) {
+                if (curHeadingDirection != Direction.LEFT && !didHeadingChange) {
+                    didHeadingChange = true
                     curHeadingDirection = Direction.RIGHT
                 }
             }
 
             override fun onSwipeUp() {
-                if (curHeadingDirection != Direction.DOWN) {
+                if (curHeadingDirection != Direction.DOWN && !didHeadingChange) {
+                    didHeadingChange = true
                     curHeadingDirection = Direction.UP
                 }
             }
@@ -120,6 +126,7 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     @MainThread
     private fun tick() {
         if (curTick == tickAmount) {
+            didHeadingChange = false
             curTick = 0
             superFoodControl()
             moveSnake()
