@@ -11,9 +11,12 @@ class GameActivity : AppCompatActivity() {
 
     private lateinit var snakeGame: SnakeGame
     private lateinit var pause: AlertDialog
+    private var kitNumber = -1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        kitNumber = intent.getIntExtra("kit", 0)
 
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Game paused")
@@ -23,7 +26,7 @@ class GameActivity : AppCompatActivity() {
         pause = builder.create()
 
         val level = intent.getIntExtra("level", 20)
-        val kitNumber = intent.getIntExtra("kit", 1)
+        val kitNumber = intent.getIntExtra("kit", 0)
 
         snakeGame = SnakeGame(this, level, kitNumber)
 
@@ -41,6 +44,7 @@ class GameActivity : AppCompatActivity() {
         snakeGame.pauseGame()
         val intent = Intent(this, DeathScreenActivity::class.java)
         intent.putExtra("score", snakeGame.score)
+        intent.putExtra("kit", kitNumber)
         startActivity(intent)
         //finish()
     }
