@@ -18,7 +18,7 @@ class GameActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Game paused")
         builder.setNegativeButton("Resume") { _: DialogInterface, _: Int -> onResume() }
-        builder.setPositiveButton("Quit") { _: DialogInterface, _: Int -> finish() }
+        builder.setPositiveButton("Quit") { _: DialogInterface, _: Int -> snakeGame.death() }
 
         pause = builder.create()
 

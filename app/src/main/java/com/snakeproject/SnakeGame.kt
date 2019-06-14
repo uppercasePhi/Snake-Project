@@ -276,7 +276,7 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     }
 
 
-    private fun death() {
+    public fun death() {
         scoreManager.addScore(score)
         deadCallback()
     }
