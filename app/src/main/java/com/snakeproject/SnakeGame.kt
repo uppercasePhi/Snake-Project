@@ -46,7 +46,7 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     private var snakeXs = Array(maxSnakeLength) { 0 }
     private var snakeYs = Array(maxSnakeLength) { 0 }
 
-    private var score: Int = 0
+    public var score: Int = 0
 
     lateinit var deadCallback: () -> Unit
     private val tickTimer = Timer()

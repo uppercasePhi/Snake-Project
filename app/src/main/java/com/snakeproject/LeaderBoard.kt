@@ -26,7 +26,7 @@ class LeaderBoard : AppCompatActivity() {
         listView = findViewById(R.id.main_listview)
 
 
-        var l = scoreManager.getTopScores(10).map { it.toString() }.toTypedArray()
+        val l = scoreManager.getTopScores(10).map { it.toString() }.toTypedArray()
         listView.adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, l)
 
 //        val listView = findViewById<ListView>(R.id.main_listview)
