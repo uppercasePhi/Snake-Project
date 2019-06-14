@@ -189,9 +189,28 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
     }
 
 
+    private fun isFoodLegal(isSuperFood: Boolean = false): Boolean {
+        if (isSuperFood) {
+            for (i in 0 until snakeLength) {
+                if (snakeXs[i] == superFood.x && snakeYs[i] == superFood.y)
+                    return false
+            }
+            return true
+        } else {
+            for (i in 0 until snakeLength) {
+                if (snakeXs[i] == food.x && snakeYs[i] == food.y)
+                    return false
+            }
+            return true
+        }
+    }
+
+
     private fun spawnFood() {
-        food.x = Random.nextInt(screenSizeInCells)
-        food.y = Random.nextInt(screenSizeInCells)
+        do {
+            food.x = Random.nextInt(screenSizeInCells)
+            food.y = Random.nextInt(screenSizeInCells)
+        } while (!isFoodLegal())
     }
 
 
@@ -230,8 +249,10 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
         if (Random.nextInt(50) == 1) {
             isSuperFoodActive = true
             superFoodTimer = 20
-            superFood.x = Random.nextInt(screenSizeInCells)
-            superFood.y = Random.nextInt(screenSizeInCells)
+            do {
+                superFood.x = Random.nextInt(screenSizeInCells)
+                superFood.y = Random.nextInt(screenSizeInCells)
+            } while (!isFoodLegal(isSuperFood = true))
         }
     }
 
