@@ -21,13 +21,15 @@
               android:textSize="40sp"
               android:id="@+id/score_field"/>
 
-    <Button android:layout_width="match_parent"
+    <Button android:layout_width="150dp"
             android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
             android:textSize="40sp"
             android:text="@string/next"
             android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="40dp"
             android:id="@+id/next_button"/>
 
 </RelativeLayout>
