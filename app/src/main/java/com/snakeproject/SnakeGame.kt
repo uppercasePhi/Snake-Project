@@ -97,7 +97,7 @@ class SnakeGame(context: Context, level: Int, kitNumber: Int) : View(context) {
             snakeYs[i] = 0
         }
 
-        snakeLength = 3
+        snakeLength = 1
         snakeXs[0] = screenSizeInCells / 2
         snakeYs[0] = screenSizeInCells / 2
     }
