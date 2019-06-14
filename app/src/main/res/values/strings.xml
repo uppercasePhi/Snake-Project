@@ -5,7 +5,7 @@
     <string name="play_button">Play</string>
     <string name="shop_button">Themes</string>
     <string name="settings_button">Settings</string>
-    <string name="records_button">Records</string>
+    <string name="leaderboards_button">Leaderboards</string>
 
     <string name="level_select">Level Select</string>
     <string name="levels">Levels:</string>
@@ -31,4 +31,7 @@
     <string name="cyan_and_purple">Cyan and purple</string>
     <string name="red_and_blue">Red and blue</string>
     <string name="cherry_and_teal">Cherry and teal</string>
+    <string name="your_score_is">Your score is</string>
+    <string name="next">Next</string>
+    <string name="erase_scores">Erase scores</string>
 </resources>

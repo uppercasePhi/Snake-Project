@@ -25,7 +25,7 @@
             app:layout_constraintVertical_bias="0.35"/>
 
 
-    <Button android:layout_width="98dp"
+    <Button android:layout_width="170dp"
             android:layout_height="49dp"
             android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
@@ -42,7 +42,7 @@
 
 
     <Button
-            android:layout_width="98dp"
+            android:layout_width="170dp"
             android:layout_height="49dp"
             android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
@@ -59,7 +59,7 @@
 
 
     <Button
-            android:layout_width="98dp"
+            android:layout_width="170dp"
             android:layout_height="49dp"
             android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
@@ -75,11 +75,11 @@
             app:layout_constraintVertical_bias="0.7"/>
 
     <Button
-            android:layout_width="98dp"
+            android:layout_width="170dp"
             android:layout_height="49dp"
             android:background="@color/colorTwo"
             android:textColor="@color/colorThree"
-            android:text="@string/records_button"
+            android:text="@string/leaderboards_button"
             android:textSize="20sp"
             android:id="@+id/records_button"
 

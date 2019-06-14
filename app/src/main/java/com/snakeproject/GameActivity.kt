@@ -1,6 +1,7 @@
 package com.snakeproject
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -38,7 +39,10 @@ class GameActivity : AppCompatActivity() {
 
     private fun onDeath() {
         snakeGame.pauseGame()
-        finish()
+        val intent = Intent(this, DeathScreenActivity::class.java)
+        intent.putExtra("score", snakeGame.score)
+        startActivity(intent)
+        //finish()
     }
 
     override fun onResume() {

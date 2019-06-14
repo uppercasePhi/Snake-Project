@@ -18,6 +18,11 @@ object scoreManager {
     }
 
 
+    fun eraseScores() {
+        file.delete()
+    }
+
+
     fun getTopScores(top: Int): List<Int> {
         if (!file.exists()) {
             return emptyList()
