@@ -25,6 +25,8 @@
             android:layout_height="wrap_content"
             android:textSize="40sp"
             android:text="@string/next"
+            android:background="@color/colorTwo"
+            android:textColor="@color/colorThree"
             android:layout_alignParentBottom="true"
             android:id="@+id/next_button"/>
 
