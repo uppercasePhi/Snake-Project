@@ -10,12 +10,15 @@ class DeathScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_death_screen)
+        val kitNumber = intent.getIntExtra("kit", 0)
 
         val score = intent.getIntExtra("score", 0)
         score_field.text = "$score"
 
         next_button.setOnClickListener {
             val intent = Intent(this, LeaderBoard::class.java)
+            intent.putExtra("kit", kitNumber)
+
             startActivity(intent)
         }
     }
